@@ -1,0 +1,13 @@
+# macOS
+**/.DS_Store
+
+# Dev build
+build/
+docs/
+tmp/
+
+# Test
+*.out
+
+# Environment variables
+.env
