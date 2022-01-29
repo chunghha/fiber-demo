@@ -11,5 +11,5 @@ func SwaggerRoute(a *fiber.App) {
 	// Create routes group.
 	route := a.Group("/swagger")
 
-	route.Get("*", swagger.Handler)
+	route.Get("*", swagger.HandlerDefault)
 }

@@ -7,11 +7,21 @@ import (
 	"fiber-demo/pkg/utils"
 
 	"github.com/gofiber/fiber/v2"
+	"go.uber.org/zap"
 
 	_ "fiber-demo/docs" // load API Docs files (Swagger)
 
 	_ "github.com/joho/godotenv/autoload" // load .env file automatically
 )
+
+var logger *zap.Logger
+
+func initLogger() {
+	// global zap logger
+	logger, _ = zap.NewProduction()
+	defer logger.Sync()
+	zap.ReplaceGlobals(logger)
+}
 
 // @title fiber-demo
 // @version 0.1.0
@@ -26,6 +36,8 @@ import (
 // @name Authorization
 // @BasePath /api
 func main() {
+	initLogger()
+
 	config := configs.FiberConfig()
 
 	app := fiber.New(config)
