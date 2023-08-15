@@ -1,4 +1,4 @@
-ARG GO_VERSION=1.17
+ARG GO_VERSION=1.21
 
 FROM golang:${GO_VERSION}-alpine AS builder
 
@@ -11,8 +11,8 @@ COPY . .
 ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 RUN go build -ldflags="-s -w" -o fiber-demo .
 
-RUN go get -u github.com/swaggo/swag/cmd/swag
-RUN swag init
+# RUN go get -u github.com/swaggo/swag/cmd/swag
+# RUN swag init
 
 FROM alpine:latest
 
